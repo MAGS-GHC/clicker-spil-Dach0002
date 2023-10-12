@@ -3,11 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clicker Spil</title>
+    <title>Mushroom Clicker Spil</title>
     <script src="app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+  <p id="mushroom-text">Mushrooms: 0</p>
+
+  <input type='button' value='Harvest Mushrooms' onClick="harvestMushrooms()">
+  <input type='button' value='Hire a Cultivator' onClick="hireCultivator()">
+  <input class='upgrade' type='button' value='getAutoGrowthUpdate' onClick="getAutoGrowthUpdate()">
+      
+  <p id='mushroomPriceText'></p>
+  
+
+    <script>
+      var mushrooms = 0; 
+      var mpc = 1;
+      var mps = 0;
+      var mushroomPrice = 25;
+     
+      
+
+      function harvestMushrooms() {
+        mushrooms += mpc;
+        document.getElementById('mushroom-text').innerHTML = "Mushrooms: " + mushrooms;
+
+      }
+      
+      function hireCultivator() { 
+        if(mushrooms >= mushroomPrice) {
+        mpc += 1;
+        mushrooms -= mushroomPrice;
+        mushroomPrice = Math.round(mushroomPrice * 1.1);
+        document.getElementById('mushroom-text').innerHTML = "Mushrooms: " + mushrooms;
+        document.getElementById('mushroomPriceText').innerHTML = "Mushroom Price: " + mushroomPrice;
+      } else {
+        alert('your harvest is too low Friend')
+      }
+      } 
+
+      function getAutoGrowthUpdate() { 
+        if(mushrooms >= 50) { 
+        mushrooms = 50;
+        mps += 1;
+        document.getElementById('mushroom-text').innerHTML = "Mushrooms: " + mushrooms;
+      } else {
+        alert('It cost you 50 mushrooms for this update pirate')
+      } 
+
+      }
+
+      setInterval(function() {
+        mushrooms += mps;
+        document.getElementById('mushroom-text').innerHTML = "Mushrooms: " + mushrooms;
+        
+
+
+      
+      },1000)
+
+
+
+    </script>
+
 </body>
 </html>
+
+    
